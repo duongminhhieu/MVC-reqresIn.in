@@ -3,6 +3,7 @@ const router = app.Router();
 const PersonController = require('../controllers/PersonController');
 
 router.get('/', PersonController.home);
+router.get('/home', PersonController.home);
 router.get('/user/:id', PersonController.showUser);
 router.get('/addUser', PersonController.addUser);
 router.post('/store', PersonController.store);

@@ -58,7 +58,7 @@ class PersonController {
 
             const formData = req.body;
             handlePerson.saveData(formData);
-            res.redirect('/')
+            res.redirect('/home')
         }
         catch (error) {
             next(error);
