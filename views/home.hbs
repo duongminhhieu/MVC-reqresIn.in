@@ -1,0 +1,107 @@
+<!-- container -->
+
+<table class="table table-striped align-middle">
+
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">ID User</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Avatar</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each persons}}
+
+        {{#if id}}
+        <tr class="item-user">
+            <th scope="row">{{id}}</th>
+            <td><a style="text-decoration: none;" href="/user/{{id}}">{{first_name}}</a></td>
+            <td>{{last_name}}</td>
+            <td>{{email}}</td>
+            <td><a href="/user/{{id}}"><img style="height: 150px;" src={{avatar}} alt="{{id}}"></a></td>
+            <td>
+                <a class="btn btn-primary me-4" href="/user/{{id}}/editUser" role="button">Sửa</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-id="{{id}}"
+                    data-bs-target="#deleteModal">
+                    Xóa
+                </button>
+            </td>
+        </tr>
+        {{/if}}
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- pagination -->
+<nav aria-label="..." class="d-flex">
+    <ul class="pagination justify-content-start">
+        <li class="page-item">
+            <a class="page-link" href="?page={{prevPage}}">&laquo;</a>
+        </li>
+        <li class="page-item {{#if active.one}}active{{/if}}"><a class="page-link" href="?page=1">1</a></li>
+        <li class="page-item {{#if active.two}}active{{/if}}" aria-current="page">
+            <a class="page-link" href="?page=2">2</a>
+        </li>
+        <li class="page-item {{#if active.three}}active{{/if}}"><a class="page-link" href="?page=3">3</a></li>
+        <li class="page-item {{#if active.four}}active{{/if}}"><a class="page-link" href="?page=4">4</a></li>
+        <li class="page-item {{#if active.five}}active{{/if}}"><a class="page-link" href="?page=5">5</a></li>
+        <li class="page-item {{#if active.six}}active{{/if}}"><a class="page-link" href="?page=6">6</a></li>
+        <li class="page-item {{#if active.seven}}active{{/if}}"><a class="page-link" href="?page=7">7</a></li>
+        <li class="page-item {{#if active.eight}}active{{/if}}"><a class="page-link" href="?page=8">8</a></li>
+        <li class="page-item {{#if active.nine}}active{{/if}}"><a class="page-link" href="?page=9">9</a></li>
+        <li class="page-item {{#if active.next}}active{{/if}}">
+            <a class="page-link" href="?page={{nextPage}}">&raquo;</a>
+        </li>
+    </ul>
+    <a href="/allusers" class="mx-4 mt-2">Xem tất cả</a>
+</nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModalLabel">Xóa thành viên</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn muốn xóa thành viên này ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn btn-danger" id="btn-delete-user">Xóa vĩnh viễn</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- delete hidden form --}}
+<form name="delete-form" method="POST"></form>
+
+<script>
+
+    var userID;
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // get ID from modal
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            userID = button.data('id')
+        })
+    });
+
+
+    var deleteUser = document.getElementById('btn-delete-user');
+
+    deleteUser.onclick = function (event) {
+        var formCourse = document.forms['delete-form'];
+        formCourse.action = `/user/${userID}/deleteUser`;
+        formCourse.submit();
+    }
+
+</script>

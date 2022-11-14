@@ -1,0 +1,32 @@
+<div class="mt-4">
+
+    <h3>Sửa User</h3>
+
+    <form class="row g-3" method="POST" action="/user/{{person.id}}/updateUser">
+        <div class="col-md-6">
+            <label for="first_name" class="form-label">First name</label>
+            <input type="text" class="form-control" id="first_name" value="{{person.first_name}}" name="first_name" required>
+        </div>
+        
+
+        <div class="col-md-6">
+            <label for="last_name" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="last_name" value="{{person.last_name}}" name="last_name" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" name="email" value="{{person.email}}" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="avatar" class="form-label">Avatar</label>
+            <input type="text" class="form-control" id="avatar" name="avatar" value="{{person.avatar}}" required>
+        </div>
+
+        <div class="mt-4 col-12">
+            <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </div>
+    </form>
+
+</div>
