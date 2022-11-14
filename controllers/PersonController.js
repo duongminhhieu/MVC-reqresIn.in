@@ -55,10 +55,11 @@ class PersonController {
     store(req, res, next) {
 
         try {
-
             const formData = req.body;
             handlePerson.saveData(formData);
-            res.redirect('/home')
+
+            // const host = req.headers.host; // get host
+            res.redirect(200,'/home')
         }
         catch (error) {
             next(error);
@@ -89,7 +90,7 @@ class PersonController {
 
             handlePerson.updateData(formData);
 
-            res.redirect('back')
+            res.redirect('/allusers')
         }
         catch (error) {
             next(error);
@@ -102,6 +103,7 @@ class PersonController {
             const id = req.params.id;
             
             handlePerson.deleteData(parseInt(id));
+
             res.redirect('back')
         }
         catch (error) {
