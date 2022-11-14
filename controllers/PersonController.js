@@ -89,7 +89,7 @@ class PersonController {
 
             handlePerson.updateData(formData);
 
-            res.redirect('/')
+            res.redirect('back')
         }
         catch (error) {
             next(error);
@@ -102,7 +102,7 @@ class PersonController {
             const id = req.params.id;
             
             handlePerson.deleteData(parseInt(id));
-            res.redirect('/')
+            res.redirect('back')
         }
         catch (error) {
             next(error);
