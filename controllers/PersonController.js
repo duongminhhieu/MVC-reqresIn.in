@@ -59,7 +59,8 @@ class PersonController {
             handlePerson.saveData(formData);
 
             // const host = req.headers.host; // get host
-            res.redirect(200,'/home')
+            res.redirect('/home')
+            next();
         }
         catch (error) {
             next(error);
@@ -91,6 +92,7 @@ class PersonController {
             handlePerson.updateData(formData);
 
             res.redirect('/allusers')
+            next();
         }
         catch (error) {
             next(error);
@@ -104,7 +106,8 @@ class PersonController {
             
             handlePerson.deleteData(parseInt(id));
 
-            res.redirect('back')
+            res.redirect('back');
+            next();
         }
         catch (error) {
             next(error);
