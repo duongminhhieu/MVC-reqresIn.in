@@ -11,4 +11,3 @@ Sử dụng MVC pattern để xây dựng ứng dụng (có errorhandling) với
 
 ❏ Cập nhật / Xóa user
 
-Bài tập Web-HCMUS
